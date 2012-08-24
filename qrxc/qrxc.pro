@@ -37,7 +37,7 @@ HEADERS += association.h \
 	stringType.h \
 	type.h \
 	xmlCompiler.h \
-	scalableItem.h
+	scalableItem.h \
 
 SOURCES += association.cpp \
 	diagram.cpp \

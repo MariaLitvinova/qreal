@@ -34,7 +34,6 @@ LIBS += -L../bin -lqrrepo -lqrkernel -lqrutils #-lqrmc
 unix:DEFINES   = _TTY_POSIX_
 win32:DEFINES  = _TTY_WIN_
 
-
 # Graphical elements
 include (umllib/umllib.pri)
 

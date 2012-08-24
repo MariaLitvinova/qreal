@@ -21,6 +21,7 @@
 
 #include "sceneGridHandler.h"
 #include "umlPortHandler.h"
+#include "portHandler.h"
 
 class NodeElement : public Element
 {
@@ -52,12 +53,18 @@ public:
 	void storeGeometry();
 	virtual void setName(QString name);
 
-	const QPointF getPortPos(qreal id) const;
+	QPointF const portPos(qreal id) const;
+	QPointF const nearestPort(QPointF const &location) const;
+	//TODO: rename method to portNumber
 	static int portId(qreal id);
-	const QPointF getNearestPort(QPointF const &location) const;
+	qreal portId(QPointF const &location) const;
 
+<<<<<<< HEAD
 	qreal getPortId(const QPointF &location) const;
 
+=======
+	QList<EdgeElement *> getEdges();
+>>>>>>> 87a7862b9757ea165e888c4de23fdb8495ebdb3b
 	void addEdge(EdgeElement *edge);
 	void delEdge(EdgeElement *edge);
 
@@ -109,6 +116,19 @@ public:
 	Element *getPlaceholderNextElement();
 	void highlightEdges();
 
+<<<<<<< HEAD
+=======
+	bool isFolded() const;
+	QGraphicsRectItem* placeholder() const;
+
+	virtual void deleteFromScene();
+
+	QList<EdgeElement *> const edgeList() const;
+
+	virtual void setAssistApi(qReal::models::GraphicalModelAssistApi *graphicalAssistApi
+			, qReal::models::LogicalModelAssistApi *logicalAssistApi);
+
+>>>>>>> 87a7862b9757ea165e888c4de23fdb8495ebdb3b
 public slots:
 	virtual void singleSelectionState(const bool singleSelected);
 	virtual void selectionState(const bool selected);
@@ -153,6 +173,7 @@ private:
 
 	NodeElement *getNodeAt(const QPointF &position);
 
+<<<<<<< HEAD
 	QLineF newTransform(const StatLine& port) const;
 	QPointF newTransform(const StatPoint& port) const;
 
@@ -174,10 +195,13 @@ private:
 	qreal distanceFromPointPort(int pointPortNumber, const QPointF &location) const;
 	qreal getNearestPointOfLinePort(int linePortNumber, const QPointF &location) const;
 
+=======
+	void updateByChild(NodeElement *item, bool isItemAddedOrDeleted);
+	void updateByNewParent();
+
+>>>>>>> 87a7862b9757ea165e888c4de23fdb8495ebdb3b
 	void initEmbeddedLinkers();
 	void setVisibleEmbeddedLinkers(const bool show);
-
-	void connectTemporaryRemovedLinksToPort(qReal::IdList const &rtemporaryRemovedLinks, QString const &direction);
 
 	ContextMenuAction mSwitchGridAction;
 	static int const objectMinSize = 10;
@@ -187,10 +211,7 @@ private:
 
 	QList<NodeElement*> childs;
 
-	QList<StatPoint> mPointPorts;
-	QList<StatLine> mLinePorts;
 	QRectF mContents;
-
 	QList<EdgeElement *> mEdgeList;
 
 	DragState mDragState;
@@ -224,6 +245,7 @@ private:
 
 	SceneGridHandler *mGrid;
 	UmlPortHandler *mUmlPortHandler;
+	PortHandler *mPortHandler;
 
 	QGraphicsRectItem *mPlaceholder;
 	NodeElement *mHighlightedNode;
